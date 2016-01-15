@@ -1,0 +1,39 @@
+\subsection{Voorkomen van deadlock}
+
+Het systeem moet zo opgebouwd zijn dat deadlocks gewoon uitgesloten zijn. Dit kan op twee mogelijkheden:
+
+\begin{itemize}
+\item Indirecte methode: voorkomen van 1 van de 3 noodzakelijke voorwaarden
+\item Directe methode: voorkomen van het cirkelvormig wachten
+\end{itemize}
+
+\subsubsection{Wederzijdse uitsluiting}
+
+Dit moet ondersteund zijn door het besturingssysteem. Er is geen alternatief voor dit.
+
+\subsubsection{Vasthouden en wachten}
+
+Het proces vraagt in één keer alle vereiste bronnen aan en wordt geblokkeerd zolang er een of meerdere bronnen niet beschikbaar zijn. Het proces kan dus bronnen blokkeren waar hij op dat moment nog niets mee is.
+
+\subsubsection{Geen preëmptieve onderbreking}
+
+\begin{itemize}
+\item Een proces bezet een aantal bronnen, verzoekt om een andere $\Rightarrow$ verzoek wordt geweigerd $\Rightarrow$ proces moet alle bronnen vrijgeven en er een volgende keer terug om verzoeken
+\item OS onderbreekt preëmptief een proces dat om een bron vraagt dat bezet is door een ander proces en eisen dat dit zijn bronnen vrijgeeft(voorkomt enkel een deadlock wanneer beide processen een andere prioriteit hebben $\Rightarrow$ preëmptief onderbreken proces met laagste prioriteit).
+\end{itemize}
+
+Onderbreken heeft alleen zin bij bronnen waarvan de toestand gemakkelijk kan worden opgeslagen en hersteld, zoals bij de processor.
+
+\subsubsection{Cirkelvormig wachten}
+
+Door het definiëren van een lineaire rangorde van soorten voorzieningen kan cirkelvormige wachten voorkomen worden:
+
+Aan een proces zijn bronnen toegewezen van het soort R, dan mag dit proces enkel nog maar verzoeken om bronnen met een hogere rangorde dan R.
+
+Volgende situatie kan dan niet meer:
+
+P1 heeft bron Ri bezet en vraagt om bron Rj P2 heeft bron Rj bezet en verzoekt om Ri
+
+Dit kan niet want als i < j dan kan j !< i dus deze deadlock is opgelost want P2 mag Ri niet aanvragen 
+
+Inefficiënt want het vertraagt de processen en weigert onnodig de toegang tot bronnen (omdat dit in een bepaalde volgorde moet gebeuren, zelfs al zijn de bronnen vrij)

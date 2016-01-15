@@ -1,0 +1,61 @@
+\subsection{Monitoren}
+
+Semaforen hebben nadelen:
+
+\begin{itemize}
+\item verantwoordelijkheid voor plaatsing van semWait en semSignal ligt volledig bij de programmeur wat dus de kans op fouten groter maakt dan bij monitors waar deze verantwoordelijkheid gedeeltelijk wordt afgeschoven op het vertaalprogramma.
+\item semWait en semSignal kunnen overal verspreid staan over een programma en het is soms moeilijk om te zien wat hun invloed juist is $\Rightarrow$ een monitor is meer afgelijnd, het is het creëren van een atomair blok daar waar er eerst geen was.
+\end{itemize}
+
+Een monitor is een constructie in een programmeertaal die een functionaliteit biedt die vergelijkbaar is met die van semaforen, maar die gemakkelijker te besturen is. Ook is ze geïmplementeerd als een programma- bibliotheek. Dit biedt de mogelijkheid grendels op elk object te plaatsen.
+
+\subsubsection{Monitor met signal}
+
+Een monitor heeft als belangrijkste kenmerken:
+
+\begin{itemize}
+\item Lokale gegevensvariabelen zijn uitsluitend toegankelijk voor de procedures van de monitor en niet voor andere externe procedures.
+\item Een proces benadert de monitor door een van de procedures ervan aan te roepen.
+\item Slecht één proces tegelijk kan worden uitgevoerd in de monitor.
+\end{itemize}
+
+Door slechts 1 proces tegelijk toe te laten kan de monitor worden gebruikt als een voorziening voor wederzijdse uitsluiting. Een monitor ondersteunt ook synchronisatie door gebruik te maken van conditievariabelen die zijn opgenomen binnen de monitor en die alleen binnen de monitor toegankelijk zijn.
+
+2 functies werken hiermee:
+
+\begin{itemize}
+\item cwait(c) : stelt de uitvoering van het aanroepende proces uit op conditie c. De monitor is daarna beschikbaar voor gebruik door een ander proces.
+\item csignal(c): hervat de uitvoering van een bepaald proces dat werd onderbroken na een cwait op dezelfde conditie. Zijn er meerdere van dergelijke processen, kies dan één proces; zijn er geen wachtende, doe dan niets!
+\end{itemize}
+
+Wanneer er bij monitors een signal wordt verstuurd maar er is helemaal geen proces dat wacht op de conditievariabele (er zit geen proces in de wachtrij van de variabele), dan gebeurt er helemaal niets $\Rightarrow$ semaforen.
+
+Dus: monitor toegankelijk voor slechts 1 proces per keer, als eerste proces binnenkomt, dan wordt de conditie gewijzigd waardoor een tweede proces door cwait(c) uit te voeren terechtkomt in een wachtrij van de conditie totdat eerste proces een signal uitvoert dat de monitor vrij is $\Rightarrow$  proces uit de wachtrij hervat zijn uitvoering net na de cwait(x).
+
+
+De verantwoordelijkheid voor de correctheid van de synchronisatie ligt nog steeds bij de programmeur, maar: Voordelen van monitors tegenover semaforen:
+De synchronisatiefuncties blijven beperkt tot de monitor $\Rightarrow$  overzichtelijker en makkelijker te controleren <-> semaforen: kunnen over het hele programma staan.
+
+\textbf{Nadelen van monitors:}
+
+Een goede synchronisatie vereist dat procedures worden aangeroepen voor en na het gebruik van de gedeelde bron. Gebeurt dit niet of verkeerd, dan bestaat de kans dat een thread of een proces toch nog toegang heeft tot een gedeelde bron terwijl een ander proces daar ook mee bezig is.
+
+Geneste monitoren kunnen deadlocks veroorzaken: P1 zit in een procedure van een high-level monitor en gaat over naar een procedure van een lower-level monitor, daar wordt het proces in een wachtrij geplaatst. Alles goed en wel voor de lower-level monitor, die komt zo vrij voor een ander proces maar de high-level monitor is nog steeds bezet => geen ander proces kan die gebruiken => deadlock
+
+
+\subsubsection{Alternatief type monitors met notify en broadcast}
+
+Met csignal heb je twee nadelen:
+
+\begin{itemize}
+\item Is het proces dat de csignal geeft nog niet klaar met de monitor, dan zijn twee extra proceswisselingen nodig: één om dit proces op te schorten en één om het te hervatten wanneer de monitor weer beschikbaar is.
+\item De processcheduling bij een signaal moet volledig betrouwbaar zijn. Wordt een csignal uitgevoerd, dan moet een proces uit de bijbehorende conditie-wachtrij onmiddellijk worden geactiveerd en moet de scheduler voorkomen dat andere processen voorafgaand aan de activering de monitor binnenkomen. Wordt dat niet voorkomen, dan kan de conditie waarop het proces wordt geactiveerd nog veranderen.
+\end{itemize}
+
+Csignal wordt vervangen door cnotify met de volgende interpretatie: voert een proces dat wordt uitgevoerd in de monitor cnotify(x) uit, dan wordt dat gemeld aan de wachtrij voor de conditie x, maar wordt de uitvoering van het signalerende proces voortgezet.
+
+Het resultaat van de melding is dat het proces aan de kop van de conditiewachtrij zal worden hervat op een geschikt moment in de toekomst wanneer de monitor beschikbaar is. Maar het kan niet voorkomen dat een ander proces de monitor eerder binnenkomt dan het wachtende proces, daarmee dat het wachtende proces de conditie opnieuw moet controleren.
+
+Bij deze soort monitors zijn de if-lussen vervangen door while-lussen. Daarmee leidt deze indeling tot ten minste één extra evaluatie van de conditievariabele. Er moeten geen extra proceswisselingen gebeuren en er zijn geen beperkingen wanneer het wachtende proces uitgevoerd wordt na cnotify.
+
+Cbroadcast zorgt ervoor dat alle processen die wachten op een conditie, in de toestand Gereed worden gebracht. Dit is handig in situaties waarbij een proces niet weet hoeveel andere processen moeten worden geactiveerd.

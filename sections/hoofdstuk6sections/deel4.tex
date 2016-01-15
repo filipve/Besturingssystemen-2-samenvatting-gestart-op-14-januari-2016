@@ -1,0 +1,48 @@
+\subsection{Detecteren van deadlock}
+
+Deadlocks vermijden: beperkingen opleggen aan processen en het beperken van toegang tot voorzieningen. Veel te voorzichtig, en onnodig blokkeren in sommige situaties.
+
+Deadlocks detecteren: geen beperkingen en er wordt, in de mate van het mogelijke aan alle bronaanvragen tegemoetgekomen. Periodiek voert het OS een algoritme uit om 'cirkelvormig wachten' vast te stellen.
+
+\subsubsection{Algoritmen voor detecteren deadlock}
+
+Ingrediënten:
+
+\begin{itemize}
+\item Een matrix van nodige bronnen per proces.
+\item Een matrix van reeds gealloceerde bronnen per proces. Een vector nog beschikbare bronnen.
+\item Een vector totaal aantal instanties per bron.
+\end{itemize}
+
+Stappen:
+
+\begin{enumerate}
+\item Markeren van alle processen waaraan geen enkele bron is toegewezen (dus overal nullen in de 'Allocation' matrix).
+\item Initialisatie van een tijdelijke vector W die gelijk is aan de vector van nog beschikbare bronnen.
+\item Op zoek naar een proces waarvoor geldt dat het aantal geclaimde instanties van bronnen (matrix Q) kleiner of gelijk is aan het aantal nog beschikbare instanties. wordt zo een proces niet gevonden => algoritme beëindigen.
+\item Wordt dat wel gevonden $\Rightarrow$ dat proces markeren en de instanties van bronnen uit de matrix Allocation die bij dat proces horen worden bij W opgeteld en we gaan verder met opnieuw stap 3.
+\end{enumerate}
+
+Wanneer is er een deadlock: Er is sprake van een deadlock als er aan het einde van het algoritme nog ongemarkeerde processen zijn. (deze zitten in een deadlock) Een proces wordt immers gemarkeerd wanneer het geen bronnen meer vasthoudt en dus ook niet nuttig is voor het vrijgeven van bronnen na uitvoering van het proces.
+
+\subsubsection{Herstel}
+
+4 mogelijke methoden. 1e is de minst geavanceerde $\Rightarrow$
+$4^e$ is de meest geavanceerde:
+
+\begin{enumerate}
+\item Afbreken van alle processen met een deadlock: meest gebruikte methode in OS
+\item Rollback van elk proces met een deadlock tot een bepaald punt en herstart alle processen (vereiste is dat rollback en restart zijn ingebouwd in het systeem). Risico dat de deadlock opnieuw zal gebeuren maar aangezien de volgorde bij gelijktijdige verwerking niet vastligt en de processen dus hoogstwaarschijnlijk in een andere volgorde zullen worden uitgevoerd is de kans groot dat de deadlock niet plaatsgrijpt.
+\item Beëindig na elkaar de processen met een deadlock totdat de deadlock niet meer bestaat. Na elke beëindiging moet het algoritme worden uitgevoerd om na te gaan of er nog een deadlock is. De volgorde van beëindiging moet zo zijn dat dit minimale kosten met zich meebrengt.
+\item Preëmptief bronnen afnemen van de processen totdat deadlock niet meer bestaat. Na elke preëmptieve onderbreking moet het algoritme worden uitgevoerd om na te gaan of er nog een deadlock is + rollback van een dergelijk proces tot het punt voorafgaand aan de toewijzing van de zojuist afgenomen bron aan dat proces.
+\end{enumerate}
+
+Op basis waarvan worden in 3 en 4 processen beëindigd of bronnen afgenomen:
+
+\begin{itemize}
+\item Processen die het minste processortijd hebben ingenomen.
+\item Processen met de laagste prioriteit.
+\item Proces die de langste resterende duur heeft.
+\item Proces die de kleinste hoeveelheid toegewezen bronnen heeft.
+\end{itemize}
+

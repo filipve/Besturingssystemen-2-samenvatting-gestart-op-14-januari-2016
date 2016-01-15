@@ -1,0 +1,53 @@
+\subsection{Vermijden van deadlock}
+
+Voorkomen deadlock: beperkingen opleggen aan bronaanvragen om zo minstens 1 van de vier voorwaarden te omzeilen $\Rightarrow$ inefficiënt gebruik van systeembronnen en inefficiënte uitvoering van processen.
+
+Vermijden van deadlock: de eerste drie voorwaarden zijn toegestaan maar er worden keuzes gemaakt om er voor te zorgen dat het nooit tot een deadlock komt $\Rightarrow$ er is meer ruimte voor gelijktijdigheid, maar dit vereist wel dat op voorhand geweten is om welke bronnen zal gevraagd worden.
+
+Twee benaderingen om deadlock te vermijden:
+\begin{itemize}
+\item Process Initial Denial : Een proces waarvan de bronaanvragen tot een deadlock kunnen leiden niet starten.
+\item Resource Allocation Denial: Wanneer een bronaanvraag van een proces kan leiden tot een deadlock, dan wordt deze aanvraag niet verwerkt.
+\end{itemize}
+
+\subsubsection{Weigeren van een nieuw proces (Process Initial Denial)}
+
+Zeer inefficiënt want het gaat ervan uit dat alle processen tegelijkertijd hun maximale claim kunnen maken.
+$\Rightarrow$ Een nieuw proces wordt alleen gestart als het systeem alle bronnen die de reeds bestaande processen kunnen opvragen aan die processen kunnen worden toegewezen en als de bronnen die het nieuw proces kan aanvragen ook kunnen worden toegewezen.
+Probleem $\Rightarrow$ Het is niet omdat twee processen een bron tegelijkertijd kunnen opvragen dat daarom ook zo is.
+
+
+\subsubsection{Weigeren om bronnen toe te wijzen}
+
+Dit werkt volgens het bankiersalgoritme van Dijkstra. 
+
+Er worden 2 soorten toestanden onderscheiden:
+
+\begin{itemize}
+\item Veilige toestand: er is op zijn minst 1 manier waarop de processen bronnen toegewezen kunnen krijgen die niet leidt tot een deadlock.
+\item Onveilige toestand: een mogelijke deadlocksituatie (die wordt vermeden door het systeem door de bronaanvraag niet te behandelen en het proces dat de aanvraag doet te blokkeren).
+\end{itemize}
+
+In het handboek op pagina 298 zie je een figuur van een voorbeeld van een veilige toestand, immers, er is op zijn minst 1 manier waarop de verschillende processen kunnen uitgevoerd worden die niet leidt tot een deadlock.
+
+In het handboek op pagina 299 zie je een figuur van een voorbeeld van een onveilige toestand.
+
+P1 verzoekt om 1 allocatie van bron R1 en 1 van bron R3 $\Rightarrow$ er zijn geen instanties meer van bron R1 terwijl er daar minstens 1 van nodig is opdat er een proces is dat volledig kan uitgevoerd worden $\Rightarrow$ het toewijzen van de bronnen aan P1 leidt tot een deadlock en dit wordt voorkomen door deze aanvraag te negeren en P1 te blokkeren waardoor een ander proces actief wordt (hopelijk P2) dat een aanvraag doet die NIET leidt tot een deadlock.
+
+Dus vermijden van een deadlock komt erop neer dat wanneer een proces een verzameling bronnen aanvraagt, wordt er vanuit gegaan dat het verzoek voltooid is en wordt de toestand van het systeem aangepast. Dan wordt de toestand bekeken en moet het systeem bekijken of het resultaat een veilige toestand is, zo ja dan wijst het systeem de bronnen toe aan het proces, zo niet dan blokkeert het systeem het proces tot de toestand veilig is.
+
+Voordelen vermijdingsstrategie:
+
+\begin{itemize}
+\item Het is niet nodig processen preëmptief te onderbreken $\Rightarrow$ detecteren.
+\item Het is minder beperkend dan deadlock voorkomen.
+\end{itemize}
+
+Beperkingen voor het gebruik:
+
+\begin{itemize}
+\item Per proces moet het maximaal aantal vereiste bronnen gekend zijn.
+\item De processen die zo worden beoordeeld moeten onafhankelijk zijn: hun volgorde mag nog niet beperkt zijn door een vereiste synchronisatie.
+\item Er moet een vast aantal toe te wijzen bronnen zijn.
+\item Een proces mag niet worden beëindigd terwijl het bronnen vasthoudt, want dan is er geen nood aan dit systeem, dan kan men gewoon bij een tekort aan bronnen, een proces beëindigen en zijn bronnen recupereren.
+\end{itemize}

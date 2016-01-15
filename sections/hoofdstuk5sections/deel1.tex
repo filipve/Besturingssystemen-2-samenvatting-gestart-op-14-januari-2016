@@ -1,0 +1,98 @@
+\section{Gelijktijdigheid: wederzijdse uitsluiting en synchronisatie}
+
+\begin{itemize}
+\item Multiprogrammering
+\item Multiprocessing
+\item Gedistribueerde verwerking
+\end{itemize}
+
+Aan de basis van deze zaken ligt gelijktijdigheid. Gelijktijdigheid treedt op in 3 situaties:
+
+\begin{itemize}
+\item Meerdere toepassingen (multiprogrammatie)
+\item Gestructureerde toepassing (een applicatie kan geprogrammeerd worden als een verzameling gelijktijdige processen)
+\item Structuur van het besturingssysteem (kan ook beschouwd worden als een verzameling van processen of threads.)
+\item 
+\item 
+\item 
+\end{itemize}
+
+\subsection{Principes van gelijktijdigheid}
+
+Bij het verweven en overlappen van processen is er dezelfde problematiek: nl. de relatieve snelheid van uitvoering van processen kan niet voorspeld worden en dit brengt complicaties met zich mee zoals:
+
+\begin{itemize}
+\item Het delen van bronnen kent tal van gevaren. (tegelijk lees en schrijfbewerkingen kan de integriteit van gegevens in gevaar brengen).
+\item Het optimaal beheren van de toewijzing van deze bronnen is een uitdaging voor het besturingssysteem.
+\item Programmeerfouten zijn zeer lastig op te sporen omdat fouten niet reproduceerbaar zijn.
+\end{itemize}
+
+\begin{itemize}
+\item Proces P1 schrijft zijn waarde ‘hello world’ weg naar chin.
+\item P2 schrijft ‘echo’ weg naar chin.
+\item P2 overschrijft de waarde chin aangezien P2 ook aan de variabele chin kan.
+\item P1 steekt de waarde van chin in chout.
+\item P2 steekt de waarde van chin in chout.
+\item P1 en P2 geven ‘echo’ terug, terwijl P1 ‘hello world’ terug wou geven!
+\end{itemize}
+
+Dit is een voorbeeld van een race-conditie. Een race conditie onstaat wanneer verschillende processen of threads gegevens lezen en schrijven, waardoor het uiteindelijke resultaat afhankelijk is van de volgorde waarin de instructies in de verschillende processen worden uitgevoerd.
+
+\subsubsection{Aandachtspunten voor het besturingssysteem}
+
+\begin{itemize}
+    \item Het besturingssysteem moet de verschillende actieve processen kunnen volgen. (dit gebeurd door middel van de procesbesturingsblokken)
+    \item 	Het besturingssysteem moet bronnen toewijzen en terug afnemen. Bronnen:
+        \begin{enumerate}
+        \item Processortijd
+        \item Geheugen
+        \item Bestanden
+        \item I/O-apparaten
+        \end{enumerate}
+    \item Het besturingssysteem moet de gegevens en fysieke bronnen van elk proces beschermen tegen verstoringen door andere processen.
+    \item Resultaat van een proces en de uitvoer ervan moet onafhankelijk zijn van de snelheid van de uitvoering ervan ten opzichte van de snelheid van andere concurrerende processen.
+
+\end{itemize}
+
+\subsubsection{Interactie van processen}
+
+\begin{itemize}
+\item 
+\item 
+\item 
+\item 
+\item 
+\item 
+\end{itemize}
+
+
+\subsubsubsection{Concurrentie tussen processen om bronnen}
+
+\textbf{Bij wedijverende processen moeten drie besturingsproblemen worden opgelost:}
+
+\begin{itemize}
+\item Er is behoefte aan wederzijdse uitsluiting. Dit veroorzaakt twee andere besturingsproblemen: deadlock en starvation.
+\item Er is een kritieke bron en een kritieke sectie. Een kritieke bron is een niet deelbare bron: Bijvoorbeeld een printer.
+\item Een kritieke sectie is een deel van programma dat de kritieke bron gebruikt.
+\end{itemize}
+
+\textbf{Samenwerking tussen processen door delen}
+
+Aangezien gegevens toegankelijk zijn vanuit bronnen ( apparaten / geheugen ) spelen nu ook de beheersproblemen wederzijdse uitsluiting, deadlocks en uithongering een rol. Het enige verschil is dat gegevenselementen toegankelijk kunnen zijn in 2 verschillende modi ( lezen / schrijven ) en dat alleen het schrijven wederzijds uitgesloten hoeft te zijn.
+
+Naast deze problemen bestaat echter een nieuwe belangrijkere vereiste: gegevenssamenhang ( data coherence )
+
+\textbf{Samenwerking tussen processen door communiceren}
+
+Werken processen samen door te communiceren, dan nemen de verschillende processen gezamenlijk deel van een gemeenschappelijke inspanning, die alle processen verenigt. De communicatie is daarbij een middel om de verschillende activiteiten te synchroniseren of te coördineren.
+
+\subsubsection{Vereisten voor wederzijdse uitsluiting}
+
+\begin{enumerate}
+\item Wederzijde uitsluiting moet dwingend opgelegd worden: slechts 1 proces van alle processen met kritieke secties voor dezelfde bron of hetzelfde gedeelde object wordt tegelijkertijd in de kritieke sectie toegelaten.
+\item Een proces dat stopt in zijn niet kritieke sectie moet dat doen zonder andere processen te verstoren.
+\item Deadlocks en starvation mogen niet voorkomen.
+\item Een proces dat toegang wil tot een kritieke sectie moet zonder vertraging toegang krijgen, wanneer er geen enkel ander proces zich in zijn kritieke sectie bevindt.
+\item Geen veronderstellingen gebruikt over de relatieve snelheden van processen/ aantal processen.
+\item Een proces mag zich maar een beperkte tijd in zijn kritieke sectie bevinden.
+\end{enumerate}

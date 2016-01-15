@@ -1,0 +1,161 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{import}
+%\usepackage{projectstyle}
+
+%de naam hier is de naam van de file in de sty folder niet de naam van providespackage
+\usepackage{sty/1loadrequiredpackagesatveryfirst}
+\usepackage{sty/2metadata}
+\usepackage{sty/3tocstyle}
+\usepackage{sty/4appendixstyle}
+\usepackage{sty/5colorstyles}
+\usepackage{sty/6sectionsstyle}
+\usepackage{sty/7newcommandsfilip}
+\usepackage{sty/8glossariesstyle}
+\usepackage{sty/9imagesstyle}
+\usepackage{sty/10liststyles}
+\usepackage{sty/11headerfooterstyle}
+\usepackage{sty/12mathstyles}
+\usepackage{sty/13customstylesfromothersites}
+\usepackage{sty/14stylesforalgoritmsandsourcecode}
+\usepackage{sty/15stylefortodonotes}
+%\usepackage{sty/}
+%\usepackage{sty/}
+%\usepackage{sty/}
+%\usepackage{sty/}
+%\usepackage{sty/}
+\usepackage{array}
+\usepackage{makeidx}
+\usepackage{multirow}
+
+
+%It prints out all index entries in the left margin of the text. This is quite useful for proofreading a document and verifying the index. For more information, see the Indexing section.
+
+%https://en.wikibooks.org/wiki/LaTeX/Indexing
+
+\usepackage{showidx} %It prints out all index entries in the left margin of the text.
+
+\makeindex
+
+%we have to define a bibliography style in the preamble
+\bibliographystyle{plain}
+
+\usepackage{booktabs}
+
+
+\begin{document}
+
+
+%\glsaddall
+%\import{./}{title.tex}
+
+%\clearpage
+
+\import{./}{title2.tex}
+
+\clearpage
+
+\thispagestyle{empty}
+
+\tableofcontents
+
+\clearpage
+
+%hoofdstuk 4
+\setcounter{section}{3}
+\newpage
+\import{sections/hoofdstuk4sections/}{deel1.tex}
+\import{sections/hoofdstuk4sections/}{deel2.tex}
+\import{sections/hoofdstuk4sections/}{deel3.tex}
+\import{sections/hoofdstuk4sections/}{deel4.tex}
+\import{sections/hoofdstuk4sections/}{deel5.tex}
+
+%hoofdstuk 5
+%\setcounter{section}{4}
+\newpage
+\import{sections/hoofdstuk5sections/}{deel1.tex}
+\import{sections/hoofdstuk5sections/}{deel2.tex}
+\import{sections/hoofdstuk5sections/}{deel3.tex}
+\import{sections/hoofdstuk5sections/}{deel4.tex}
+\import{sections/hoofdstuk5sections/}{deel5.tex}
+\import{sections/hoofdstuk5sections/}{deel6.tex}
+
+%hoofdstuk 6
+%\setcounter{section}{5}
+\newpage
+\import{sections/hoofdstuk6sections/}{deel1.tex}
+\import{sections/hoofdstuk6sections/}{deel2.tex}
+\import{sections/hoofdstuk6sections/}{deel3.tex}
+\import{sections/hoofdstuk6sections/}{deel4.tex}
+\import{sections/hoofdstuk6sections/}{deel5.tex}
+\import{sections/hoofdstuk6sections/}{deel6.tex}
+\import{sections/hoofdstuk6sections/}{deel7.tex}
+\import{sections/hoofdstuk6sections/}{deel8.tex}
+\import{sections/hoofdstuk6sections/}{deel9.tex}
+\import{sections/hoofdstuk6sections/}{deel10.tex}
+
+
+%hoofdstuk 7
+%\setcounter{section}{6}
+\newpage
+\import{sections/hoofdstuk7sections/}{deel1.tex}
+\import{sections/hoofdstuk7sections/}{deel2.tex}
+\import{sections/hoofdstuk7sections/}{deel3.tex}
+\import{sections/hoofdstuk7sections/}{deel4.tex}
+
+
+%hoofdstuk 8
+%\setcounter{section}{7}
+\newpage
+\section{Multimedia netwerken}
+\import{sections/hoofdstuk8sections/}{deel1.tex}
+\import{sections/hoofdstuk8sections/}{deel2.tex}
+\import{sections/hoofdstuk8sections/}{deel3.tex}
+\import{sections/hoofdstuk8sections/}{deel4.tex}
+\import{sections/hoofdstuk8sections/}{deel5.tex}
+
+%hoofdstuk 9
+%\setcounter{section}{8}
+\newpage
+\section{Multimedia netwerken}
+\import{sections/hoofdstuk9sections/}{deel1.tex}
+\import{sections/hoofdstuk9sections/}{deel2.tex}
+
+\begin{comment}
+%toont source code als algoritme
+\begin{algorithm}[ht]
+%dit zorgt ervoor dat het in je list of algoritms wordt getoond
+\caption{See how easy it is to provide algorithms}
+\label{myFirstAlgorithm}
+\begin{algorithmic}
+\REQUIRE $a$
+\STATE $b = 0$
+\STATE $x \leftarrow 1:10$
+\FORALL{x}
+    \STATE $b = b+a$
+\ENDFOR
+\RETURN $b$
+\end{algorithmic}
+\end{algorithm}
+
+\end{comment}
+
+
+%Next we are adding the additional lists to the end of the document:
+
+\listofalgorithms
+\clearpage
+\listoffigures
+\clearpage
+\listoftables
+\clearpage
+
+%\printglossaries
+\printglossary[title=Termen,toctitle=Lijst van termen]
+
+\printglossary[type=\acronymtype]
+
+
+\clearpage
+%\import{./}{bibliography.tex}
+
+\end{document}

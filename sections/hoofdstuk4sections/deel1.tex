@@ -1,0 +1,64 @@
+\section{Threads, SMP and Microkernels}
+
+\subsection{Threads: Resource ownership and execution}
+
+Processen hebben twee kenmerken:
+
+\begin{itemize}
+    \item Resource ownership (Bezit van bronnen) : Aan een proces wordt een virtuele adresruimte toegewezen voor de opslag van het procesbeeld.
+    \item Scheduling / execution (Inroosteren en uitvoering): Een proces is een uitvoeringspad door een of meer programma’s en kan verweven worden met die van andere processen.
+\end{itemize}
+	
+Deze twee kenmerken worden onafhankelijk behandeld door het besturingssysteem.
+Om een onderscheid te maken tussen de twee gezichtspunten wordt de eenheid voor de toedeling doorgaans een thread of een lightweight process genoemd. De eenheid voor bronbezit wordt een process of task genoemd.
+
+\subsubsection{Multithreading}
+
+Multithreading is de mogelijkheid van een besturingssysteem binnen één proces meerdere threads te gebruiken bij de uitvoering.
+
+Single Thread Approach betekent dat het besturingssysteem maar één thread gebruikt tijdens de uitvoering van het proces. Dit is eigenlijk niet echt een thread.
+
+MS-DOS is een voorbeeld van een besturingssysteem met één gebruikersproces en één thread.
+
+UNIX ondersteund meerdere gebruikersprocessen maar wel telkens maar één thread per proces.
+
+JRE (Java Run- Time Environment) is een voorbeeld van een process met meerdere threads.
+
+Windows, Solaris en moderne UNIX versies ondersteunen meerdere gebruikersprocessen en meerdere threads per proces.
+
+Een proces heeft dus een virtuele adresruimte, die het procesbeeld bevat en heeft beveiligde toegang tot processors, andere processen, bestanden en I/O-bronnen.
+
+\textbf{Binnen processen kunnen er dus meerdere threads zijn, elke thread heeft:}
+
+\begin{itemize}
+\item Een uitvoeringstoestand (execution state): running, ready, …
+\item Een context die wordt opgeslagen wanneer de toestand van het proces niet meer ready is.
+\item Een stack voor de uitvoering (execution stack)
+\item Een statische opslagruimte voor lokale variabelen
+\item Toegang tot het geheugen en de bronnen van zijn proces, dit is gedeeld door alle threads binnen het proces.
+\end{itemize}
+
+\textbf{Voordelen van gebruik van threads:}
+
+\begin{itemize}
+\item Het neemt veel minder tijd in beslag om een nieuwe thread aan te maken in plaats van een nieuw proces.
+\item Het neemt veel minder tijd in beslag om een thread te beëindigen in plaats van een proces te beëindigen.
+\item Het neemt veel minder tijd in beslag om te wisselen tussen twee threads in plaats van te wisselen tussen twee processen.
+\item Threads kunnen met elkaar communiceren zonder gebruik te maken van de kernel, bij de meeste besturingssystemen moeten processen communiceren met behulp van de kernel.
+\end{itemize}
+
+\textbf{Voorbeelden van het gebruik van threads in een systeem met multiprocessing voor één gebruiker:}
+
+\begin{itemize}
+\item Werk op de voorgrond en achtergrond. Terwijl dat de ene thread nog de invoer leest bij een programma kan een andere thread de ingebrachte invoer al verwerken.
+\item Asynchrone verwerking. Bijvoorbeeld het wegschrijven van de tekst van Word vanuit het RAM- geheugen naar de schijf om de zoveel tijd.
+\item Uitvoeringssnelheid. Als een thread moet wachten op een I/O-bewerking kan een andere thread van het proces een andere bewerking uitvoeren, zodat men minder of geen tijd verliest.
+\item Modulaire programmastructuur. Programma’s die verschillende bronnen en bestemmingen hebben voor invoer en uitvoer of uiteenlopende activiteiten uitvoeren, zijn makkelijker te ontwerpen en te implementeren door threads.
+\end{itemize}
+
+\textbf{Verschillende acties hebben invloed op alle threads binnen een proces:}
+
+Het besturingssysteem moet deze acties beheren op procesniveau, bijvoorbeeld als een proces opgeschort wordt, moeten alle threads van het proces opgeschort worden, zelfde geld voor als het proces beëindigd wordt.
+
+
+
