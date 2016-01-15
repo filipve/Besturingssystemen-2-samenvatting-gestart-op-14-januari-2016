@@ -9,9 +9,12 @@ Enkel 3 operaties mogen uitgevoerd worden op een semafoor:
 \item Decrement (verlaagt de waarde van het semafoor) ook wel semWait(s) genoemd. Deze verlaagt de waarde van het semafoor met 1 en onderbreekt het proces indien het semafoor negatief wordt, totdat er een semSignal(s) wordt uitgezonden door een ander proces.
 \item Increment (verhoogt de waarde van het semafoor) ook wel semSignal(s) genoemd. Deze verhoogt de waarde van het semafoor met 1 en als de waarde van het semafoor positief wordt het proces gedeblokkeerd.
 \end{itemize}
-
-
-
+\begin{figure}[htp]
+    \centering
+            \includegraphics[width=4in]{img/semafoor.png}
+        \caption{Voorbeeld van semafoor implementatie}
+    \label{fig:Voorbeeld van semafoor implementatie}
+\end{figure}
 
 Een binaire semafoor kan worden geïnitialiseerd op waarde 0 of 1 en kan ook alleen maar deze twee waarden hebben.
 
@@ -32,3 +35,12 @@ Op elk moment kan de waarde van de semafoor daarbij als volgt worden geïnterpre
 \item De waarde van de semafoor ( bij >= 0 ) is het aantal processen dat semWait(s) zonder onderbreking kan uitvoeren.
 \item De waarde van de semafoor ( bij < 0 ) is het aantal processen dat is onderbroken in de wachtrij van de semafoor.
 \end{itemize}
+
+
+\begin{figure}[htp]
+    \centering
+            \includegraphics[width=4in]{img/mutualexclusionsemafoor.png}
+        \caption{Mutual Exclusion using semaphores}
+    \label{fig:Mutual Exclusion using semaphores}
+\end{figure}
+

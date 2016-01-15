@@ -1,112 +1,45 @@
 \subsection{Mechanismen voor gelijktijdigheid in Linux}
 
-\begin{itemize}
-\item 
-\item 
-\item 
-\item 
-\item 
-\item 
-\end{itemize}
-
-\subsubsection{}
+Dit zijn de volgende mechanismen die je terugvindt in UNIX plus:
 
 \begin{itemize}
-    \item 
-    \item 
-        \begin{itemize}
-        \item 
-        \item 
-        \item 
-        \end{itemize}
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
+\item Atomische operaties
+\item Spinlocks
+\item Semaforen
+\item Barrières
 \end{itemize}
 
 \subsubsection{Atomische operaties}
 
-\begin{itemize}
-\item 
-\item 
-\item 
-\item 
-\item 
-\item 
-\end{itemize}
-
-\subsubsection{}
+Een atomische operatie wordt uitgevoerd zonder onderbreking en zonder invloeden van buitenaf. Er zijn twee typen atomische operaties:
 
 \begin{itemize}
-    \item 
-    \item 
-        \begin{itemize}
-        \item 
-        \item 
-        \item 
-        \end{itemize}
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
+\item Integer operaties: deze worden uitgevoerd op een integer variabele.
+\item Bitmap operaties: deze worden uitgevoerd op een bit in een bitmap.
 \end{itemize}
+
+Het atomaire integer gegevenstype wordt meestal gebruikt om tellers te implementeren. De atomaire bitmapbewerkingen worden uitgevoerd op een reeks bits in een willekeurige geheugenlocatie die aangeduid wordt met behulp van een pointervariabele.
 
 \subsubsection{Spinlocks}
 
+Een spinlock kan maar telkens aan één thread worden toegewezen. Andere threads blijven proberen toegang te krijgen tot de spinlock tot ze het krijgen.
+
+Een spinlock is een integer, als het 0 is, dan zet de thread de waarde op 1 en gaat het zijn kritieke sectie in. Na zijn kritieke sectie zet de thread de spinlock weer op 0.
+Als de waarde niet 0 is, dan gaat een thread die toegang wil tot de spinlock blijven de waarde checken van de spinlock tot het terug 0 is.
+
+
 \subsubsection{Semaforen}
+Er zijn 3 soorten van kernel semaforen:
 
 \begin{itemize}
-\item 
-\item 
-\item 
-\item 
-\item 
-\item 
+\item Binaire semaforen
+\item Tellende semaforen
+\item Lees/schrijf-semaforen
 \end{itemize}
 
-\subsubsection{}
 
-\begin{itemize}
-    \item 
-    \item 
-        \begin{itemize}
-        \item 
-        \item 
-        \item 
-        \end{itemize}
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-\end{itemize}
+
 
 \subsubsection{Barrières}
 
-\subsubsection{}
-
-\subsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
+Om zeker te zijn dat de instructies in de juiste volgorde worden uitgevoerd gebruikt Linux de geheugen barrières faciliteiten.

@@ -1,54 +1,38 @@
 \subsection{Mechanismen voor gelijktijdigheid in Windows}
 
-\begin{itemize}
-\item 
-\item 
-\item 
-\item 
-\item 
-\item 
-\end{itemize}
+Windows biedt synchronisatie tussen threads, als onderdeel van de objectarchitectuur. 
 
-\subsubsection{}
+Belangrijke methoden van synchronisatie zijn:
+
 
 \begin{itemize}
-    \item 
-    \item 
-        \begin{itemize}
-        \item 
-        \item 
-        \item 
-        \end{itemize}
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
+\item Wachtfuncties gebruiken
+\item Kritieke secties in usermode gebruiken
+\item Slanke (Slim) Reader/writer locks
+\item Conditievariabelen
 \end{itemize}
+
 
 \subsubsection{Wachtfuncties}
 
+De wachtfunctie staat toe dat een thread zijn eigen uitvoering blokkeert. De wachtfuncties zullen niet heropgeroepen worden tot de condities worden voldaan. Het type van wachtfunctie bepaald de groep van condities die gebruikt worden.
+
 \subsubsection{Kritieke sectieobjecten}
+
+Dit is gelijkaardig met de mutex van Solaris, buiten dat kritieke secties enkel gebruikt worden door threads van één proces.
+
+Als het systeem een multiprocessor systeem is, zal de code proberen een spin-lock the verkrijgen. Als de spinlock niet kan worden verkregen, dan wordt een synchronisatieobject gebruikt om de thread te blokkeren zodat de kernel een andere thread naar de processor kan doorsturen.
+
 
 \subsubsection{Slanke (Slim) Reader/writer locks}
 
+Windows Vista voegde een user mode reader-writer toe.
+
+Het reader/writer lock gaat de kernel binnen enkel nadat er getracht werd om een spinlock te gebruiken Met slank wordt bedoeld dat het normaal enkel de allocatie vereist van één pointer-sized stukje geheugen.
+
+
 \subsubsection{Conditievariabelen}
 
-\subsubsection{}
+Windows Vista voegde ook conditievariabelen toe.
 
-\subsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
+Het proces moet zelf een CONDITION\_VARIABELE initialiseren. Wordt gebruikt bij kritieke secties of SlimReaderWriterLocks.

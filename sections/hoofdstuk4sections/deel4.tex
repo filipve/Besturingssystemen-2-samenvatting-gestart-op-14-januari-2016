@@ -40,6 +40,13 @@ De voordelen bij het gebruik van een microkernel zijn:
 
 Aangezien de functionaliteit en de grootte van verschillende microkernels variëren kunnen geen vaste regels worden opgesteld qua structuur en functionaliteiten. Hier lichten we de minimale verzameling van functies en diensten van de microkernel toe om de indruk te geven van het ontwerp van microkernels. Deze functies worden ingedeeld in de volgende 3 categorieën:
 
+\begin{figure}[htp]
+    \centering
+            \includegraphics[width=4in]{img/pagefaultprocessing.png}
+        \caption{Page Fault Processing}
+    \label{fig:Page Fault Processing}
+\end{figure}
+
 a)	Primitief geheugenbeheer
 
 De microkernel moet het hardware concept adresruimte ondersteunen om de implementatie van bescherming op procesniveau mogelijk te maken. Zolang de microkernel verantwoordelijk blijft voor het afbeelden van alle virtuele pagina’s op fysieke paginaframes, kan het grootste deel van het geheugenbeheer worden geïmplementeerd buiten de kernel.

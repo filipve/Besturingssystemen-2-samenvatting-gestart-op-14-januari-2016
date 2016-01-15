@@ -2,6 +2,58 @@
 
 \subsubsection{Criteria bij scheduling voor korte termijn}
 
+Hoofddoel is het toewijzen van processortijd dat een of meer aspecten van het systeemgedrag worden geoptimaliseerd.
+
+Een aantal criteria worden vaak opgesteld waarmee verschillende schedulingstrategieën kunnen worden beoordeeld.
+
+\textbf{Gebruiker tegenover systeem}
+
+We kunnen een onderscheid maken tussen gebruikersgerichte criteria en 
+systeemgerichte cirteria. 
+Gebruikersgerichte criteria: antwoordtijd (tijd tussen de aanvraag en de output).
+
+Systeemgerichte criteria: Effectief en efficiënt gebruik van de processor.
+
+\textbf{Prestaties}
+
+We kunnen een onderscheid maken tussen prestatiegerichte criteria en die dat niet prestatiegericht zijn. 
+
+Prestatiegericht: Deze zijn quantitatief, makkelijk te meten. (bv. Antwoordtijd en de doorvoer).
+
+Niet-prestatie gericht: Deze zijn kwalitatie, deze zijn moeilijk te meten. (bv. Voorspelbaarheid)
+
+\begin{landscape}
+
+%The first thing you need to do is add \usepackage{multirow} to the preamble[3]. This then provides the command needed for spanning rows: \multirow{''num_rows''}{''width''}{''contents''}. The arguments are pretty simple to deduce (* for the width means the content's natural width).
+
+\begin{table}
+\def\arraystretch{1.5}%  1 is the default, change whatever you need
+\centering     % optional, probably makes it look better to have it centered on the page
+\begin{tabular}{ |l| p{19cm} | }
+\hline
+\multicolumn{2}{ |c| }{Gebruikersgericht, samenhangend met prestaties} \\
+\hline
+Omlooptijd & Dit is het tijdsinterval tussen het indienen en het voltooien van een proces.
+Hiertoe behoren de werkelijke uitvoeringstijd en de tijd die wordt besteed aan het wachten op systeembronnen, waaronder de processor. Dit is een geschikte meeteenheid voor een batchtaak. \\ \hline
+Antwoordtijd & Bij een interactieve toepassing is dit de tijd tussen het indienen van een verzoek en het moment waarop de ontvangst van het antwoord begint. Vaak kan een proces beginnen met het produceren van een bepaalde uitvoer terwijl de verwerking van het verzoek wordt voortgezet. Dit is daarom vanuit gebruikersoogpunt een beter meeteenheid dan de omlooptijd. Het schedulingsysteem moet proberen een kleine antwoordtijd te bereiken en het aantal interactieve gebruikers met een aanvaardbare antwoordtijd te maximaliseren. \\ \hline
+Deadlines & Kunnen deadlines voor het voltooien van processon worden gespecificeerd, dan moet het schedulingsysteem andere doelen ondergeschikt maken aan het maximaliseren van het aantal deadlines dat wordt gehaald. \\ \hline
+\multicolumn{2}{ |c| }{Gebruikersgericht, overige} \\
+\hline
+Voorspelbaarheid & Een bepaalde job moet in ongeveer dezelfde tijd en tegen ongeveer dezelfde kosten worden uitgevoerd, ongeacht de belasting van het systeem. Sterk variërende antwoord- of omlooptijden storen gebruikers. Dit kan een signaal zijn voor sterk uiteenlopende systeemwerklasten of de noodzaak het systeem af te stellen om instabiliteit te verhelpen. \\ \hline
+\multicolumn{2}{ |c| }{Systeemgericht, samenhangend met prestaties} \\
+\hline
+Doorvoer & De schedulingstrategie moet proberen het aantal processen te maximaliseren dat per tijdseenheid wordt doorgevoerd. Dit is een meeteenheid van de hoeveelheid werk die wordt uitgevoerd. De doorvoer is duidelijk afhankelijk van de gemiddelde duur van een proces, maar wordt ook bepaald door de schedulingstrategie, die de bezettingsgraad kan beïnvloeden. \\ \hline
+Processorgebruik & Dit is het percentage tijd dat de processor actief is. Bij een duur, gedeeld systeem is dit een belangrijk criterium. Bij systemen voor één gebruiker en bepaalde andere systemen, bijvoorbeeld realtimesystemen, is dit criterium minder belangrijk dan enkele andere criteria. \\ \hline
+\multicolumn{2}{ |c| }{Systeemgericht, overige} \\
+\hline
+Eerlijkheid & Ontbreken andere richtlijnen van de gebruiker of het systeem, dan moeten alle processen het zelfde worden behandeld en mag geen enkel proces verhongeren. \\ \hline
+Handhaven van prioriteiten & Worden prioriteiten toegekend aan processen, dan moet de schedulingstrategie voorrang geven aan processen met een hogere prioriteit. \\ \hline
+Balans bij systeembronnen & De schedulingstrategie moet de systeembronnen bezighouden. Er moet voorrang worden gegeven aan processen die weinig gebruik maken van zwaar belaste systeembronnen. Dit criterium geldt ook voor scheduling op de middellange en de lange termijn. \\ \hline
+\end{tabular}
+\end{table}
+
+\end{landscape}
+
 \subsubsection{Gebruik van prioriteiten}
 
 De scheduler zal altijd een proces met hogere prioriteit kiezen boven een proces met lagere prioriteit. Er zijn meerdere ready queues om elk niveau prioriteit te weergeven.
@@ -18,6 +70,8 @@ Hierboven zie hoe wachtrijen van prioriteiten in zijn werk gaan. Er wordt eerst 
 
 \subsubsection{Mogelijke strategieën voor scheduling}
 
+Hieronder zie je de kenmerken van verschillende schedulingstrategieën
+
 \begin{figure}[htp]
     \centering
             \includegraphics[width=4in]{img/schedulingpolicies.png}
@@ -25,14 +79,14 @@ Hierboven zie hoe wachtrijen van prioriteiten in zijn werk gaan. Er wordt eerst 
     \label{fig:Scheduling Policies}
 \end{figure}
 
-De selectiefunctie bepaald welk proces wordt geselecteerd voor uitvoering. Als het gebaseerd is op uitvoeringsgeschiedenis dan zijn de belangrijkste kwantitatieve kenmerken:
+\textbf{De selectiefunctie} bepaald welk proces wordt geselecteerd voor uitvoering. Als het gebaseerd is op uitvoeringsgeschiedenis dan zijn de belangrijkste kwantitatieve kenmerken:
 \begin{itemize}
 \item W = tijd gespendeerd al wachtend
 \item E = tijd gespendeerd aan uitvoering
 \item S = totale bedieningstijd die vereist is voor het proces, inclusief E.
 \end{itemize}
 
-De beslissingsmodus bepaalt op welke tijdstippen de selectiefunctie wordt uitgevoerd. Hierin bestaan twee categorieën:
+\textbf{De beslissingsmodus} bepaalt op welke tijdstippen de selectiefunctie wordt uitgevoerd. Hierin bestaan twee categorieën:
 \begin{itemize}
 \item Niet-preëmptief: eenmaal een proces ‘running’ is, zal het voortdoen totdat het uitgevoerd is of zichzelf blokkeert voor I/O.
 \item Preëmptief: de ‘running’ toestand mag onderbroken worden en het proces mag in ‘ready’ toestand gebracht worden door het besturingssysteem. Dit kan optreden wanneer een nieuw proces wordt aangemaakt, of tijdens een interrupt of periodiek op basis van een klokinterrupt.

@@ -1,54 +1,19 @@
 \subsection{Segmenteren}
 
+Het alternatief voor het opdelen van een gebruikersprogramma is het segmenteren. Het programma met zijn bijhorende gegevens wordt opgedeeld in een aantal segmenten.
+
+Alle segmenten van alle programma’s hoeven niet dezelfde grootte te hebben, maar er is wel een maximumgrootte vastgesteld.
+
+Vermits segmenten niet even groot zijn, is segmenteren gelijkaardig aan dynamische partitionering.
+
+Segmentatie voorkomt interne fragmentatie maar leidt, net als een dynamische partitionering tot externe fragmentatie.
+
+Net als bij paginering gebruikt eenvoudige segmentatie een segmenttabel voor elk proces en een lijst van vrije blokken in het hoofdgeheugen. Elke ingang in een segmenttabel bevat het beginadres van het bijbehorende segment in het hoofdgeheugen. De ingang bevat ook informatie over de lengte van het segment, om te voorkomen dat ongeldige adressen worden gebruikt.
+
+Voor adresvertaling bij segmenteren zijn de volgende stappen nodig:
+
 \begin{itemize}
-\item 
-\item 
-\item 
-\item 
-\item 
-\item 
+\item Haal het segment nummer uit de linker n bits van het logische adres.
+\item Gebruik het segmentnummer als index in de segmenttabel van het proces om het fysieke beginadres van het segment te vinden.
+\item Vergelijke de positie, die is vastgelegd in de rechter m bits, met de segment lengte. Is de positie groter dan de lengte, dan is het adres ongeldig.
 \end{itemize}
-
-\subsubsection{}
-
-\begin{itemize}
-    \item 
-    \item 
-        \begin{itemize}
-        \item 
-        \item 
-        \item 
-        \end{itemize}
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-\end{itemize}
-
-\subsubsection{}
-
-\subsubsection{}
-
-\subsubsection{}
-
-\subsubsection{}
-
-\subsubsection{}
-
-\subsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}

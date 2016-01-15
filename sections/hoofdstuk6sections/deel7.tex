@@ -2,28 +2,46 @@
 
 \subsubsection{Pijpen}
 
+Een pijp is een cirkelvormige buffer waarmee 2 processen kunnen communiceren (producent/consumentmodel) $\Rightarrow$FIFO wachtrij die wordt geschreven door het ene en gelezen door het andere proces.
+
+De pijp heeft een vaste grootte aan bytes $\Rightarrow$wil een proces meer schrijven dan erin kan of wil een proces meer bytes lezen dan erin staan $\Rightarrow$ proces wordt geblokkeerd, zoniet, dan wordt het schrijf-of leesverzoek meteen ingewilligd.
+
+Twee soorten pijpen: benoemde(named) en naamloze(nameless) pipe: gerelateerde processen kunnen een nameless pipe gebruiken $\leftrightarrow$ processen zonder relatie kunnen alleen een benoemde pipe gebruiken.
+
+
 \subsubsection{Berichten}
+
+Bericht is een tekst dat vergezeld gaat van een type
+
+Proces heeft een wachtrij (postvak); een ander proces stuurt een bericht naar een ander proces zijn postvak.
+
+Dat proces kan berichten lezen, ofwel FIFO, ofwel op basis van het type
+
+Proberen sturen naar een vol postvak $\Rightarrow$ opschorten van de zender. 
+
+Proberen lezen uit een leeg postvak $\Rightarrow$ opschorten van het proces.
+
+Een proces wordt NIET opgeschort wanneer het een bericht niet kan lezen.
+
 
 \subsubsection{Gedeeld geheugen}
 
+Snelste vorm van communicatie tussen processen.
+
+Processen kunnen alleen-lezen of alleen-schrijven zijn.
+
+Wederzijdse uitsluiting is een vereiste aangezien er niet én gelezen en tegelijkertijd geschreven mag worden of door twee processen tegelijkertijd mag geschreven worden.
+
+
 \subsubsection{Semaforen}
+
+Door het gebruik van gewone (dus geen binaire) semaforen kunnen verschillende processen tegelijkertijd worden uitgevoerd.
+
+De kernel voert alle gevraagde bewerkingen uit op atomair niveau: geen enkel ander proces krijgt toegang tot de semafoor tot de bewerkingen gedaan zijn.
+
 
 \subsubsection{Signalen}
 
-\subsubsection{}
+Softwaremechanisme dat een proces informeert over asynchrone gebeurtenissen, gelijkwaardig aan interrupt maar kent geen prioriteit $\Rightarrow$ worden allemaal gelijkwaardig behandeld.
 
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\subsubsubsection{}
-
-\section{}
-
-\section{}
+Een signaal wordt verstuurd bij een update van een veld in de procestabel van het proces waarnaar het signaal wordt verzonden.

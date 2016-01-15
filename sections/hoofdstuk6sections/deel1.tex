@@ -4,6 +4,29 @@
 
 Een \textbf{deadlock} is een permanente blokkering van processen die met elkaar wedijveren om bronnen of die met elkaar communiceren. Er is geen efficiënte manier om een deadlock op te lossen.
 
+\begin{figure}[htp]
+    \centering
+            \includegraphics[width=4in]{img/deadlock.png}
+        \caption{Voorbeeld deadlock}
+    \label{fig:Voorbeeld deadlock}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+            \includegraphics[width=4in]{img/processen.png}
+        \caption{Voorbeeld deadlock}
+    \label{fig:Voorbeeld deadlock}
+\end{figure}
+
+
+\begin{figure}[htp]
+    \centering
+            \includegraphics[width=4in]{img/nodeadlock.png}
+        \caption{Voorbeeld geen deadlock}
+    \label{fig:Voorbeeld geen deadlock}
+\end{figure}
+
+
 \subsubsection{Herbruikbare hulpbronnen}
 
 Er zijn 2 soorten bronnen:
@@ -25,6 +48,13 @@ Voorbeelden van herbruikbare bronnen:
 \item Semaforen
 \end{itemize}
 
+\begin{figure}[htp]
+    \centering
+            \includegraphics[width=4in]{img/processenherbruikbaar.png}
+        \caption{Voorbeeld geen deadlock}
+    \label{fig:Voorbeeld geen deadlock}
+\end{figure}
+
 \subsubsubsection{Verbruikbare bronnen}
 Voorbeelden van verbruikbare bronnen:
 
@@ -39,10 +69,14 @@ Voorbeeld van een deadlock met verbruikbare bronnen: P1 wacht op een bericht van
 
 => een deadlock treedt op als het ontvangen blokkerend is
 
+\begin{figure}[htp]
+    \centering
+            \includegraphics[width=4in]{img/Brontoewijzingsschemas.png}
+        \caption{Voorbeeld geen deadlock}
+    \label{fig:Voorbeeld geen deadlock}
+\end{figure}
 
 Een punt is een voorstelling van een bron, hierboven is er van elke bron maar 1 instantie een proces vraagt om een bron maar die nog niet toegewezen, pas wanneer er een pijl van een bron naar een proces gaat is de bron toegewezen aan dat proces.
-
-
 
 \subsubsection{Condities voor een mogelijke deadlock}
 
@@ -60,8 +94,29 @@ Hierboven staan de voorwaarden voor een mogelijke deadlock, om een echte deadloc
 
 Er zijn drie strategieën om te gaan met een deadlock: voorkomen, vermijden en detecteren
 
+Voorbeelden van deadlocks:
+
+
+
+\begin{figure}[htp]
+    \centering
+            \includegraphics[width=4in]{img/deadlockexamples.png}
+        \caption{Voorbeeld geen deadlock}
+    \label{fig:Voorbeeld geen deadlock}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+            \includegraphics[width=4in]{img/deadlockomgaan.png}
+        \caption{Voorbeeld geen deadlock}
+    \label{fig:Voorbeeld geen deadlock}
+\end{figure}
+
+Je kan op drie manieren omgaan met deadlocks:
+
 \begin{itemize}
     \item Deadlocks voorkomen
     \item Deadlocks vermijden
     \item Deadlocks opsporen
 \end{itemize}
+
