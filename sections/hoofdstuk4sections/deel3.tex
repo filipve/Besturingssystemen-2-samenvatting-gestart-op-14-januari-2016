@@ -16,7 +16,11 @@ Flynn onderscheidde de volgende soorten computersystemen:
 \item MIMD-stroom (Multiple Instruction Multiple Data): een verzameling processors voert tegelijk verschillende instructiereeksen uit met verschillende gegevensverzamelingen.
 \end{itemize}
 
+\newpage
+
 Classificatie van multiprocessors met gedeeld geheugen (zie onderstaande afbeelding)
+
+\begin{comment}
 
 \begin{figure}[htp]
     \centering
@@ -24,16 +28,26 @@ Classificatie van multiprocessors met gedeeld geheugen (zie onderstaande afbeeld
         \caption{Classificatie van multiprocessors met gedeeld geheugen}
     \label{fig:Classificatie van multiprocessors met gedeeld geheugen}
 \end{figure}
- 
+
+\end{comment}
+
+%To prevent floating at all we must not use the figure environment. The caption package gives a way to get all the other features. It provides the command \captionof that takes a counter (figure or table) as argument and of course the caption text, for example:
+
+\begin{center}
+            \includegraphics[width=4in]{img/classificatiemultiprocessors.png}
+    \captionof{figure}{Classificatie van multiprocessors met gedeeld geheugen}\label{fig:Classificatie van multiprocessors met gedeeld geheugen}%
+\end{center}
+
 Bij Symmetrische multiprocessing kan de kernel worden uitgevoerd op elke processor en meestal verzorgt elke processor zelf de scheduling van de verzameling aanwezige processen of threads.
 
+\newpage
 
 \subsubsection{Organisatie van een typische Symmetrische Multiprocessing organisatie (zie onderstaande afbeelding)}
 \begin{figure}[htp]
     \centering
             \includegraphics[width=4in]{img/organisatiesymmulti.png}
-        \caption{rganisatie van een typische Symmetrische Multiprocessing organisatie}
-    \label{fig:rganisatie van een typische Symmetrische Multiprocessing organisatie}
+        \caption{Organisatie van een typische Symmetrische Multiprocessing organisatie}
+    \label{fig:Organisatie van een typische Symmetrische Multiprocessing organisatie}
 \end{figure}
 
 

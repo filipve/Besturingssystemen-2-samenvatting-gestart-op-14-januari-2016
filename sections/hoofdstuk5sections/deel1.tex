@@ -12,9 +12,6 @@ Aan de basis van deze zaken ligt gelijktijdigheid. Gelijktijdigheid treedt op in
 \item Meerdere toepassingen (multiprogrammatie)
 \item Gestructureerde toepassing (een applicatie kan geprogrammeerd worden als een verzameling gelijktijdige processen)
 \item Structuur van het besturingssysteem (kan ook beschouwd worden als een verzameling van processen of threads.)
-\item 
-\item 
-\item 
 \end{itemize}
 
 \subsection{Principes van gelijktijdigheid}
@@ -38,6 +35,10 @@ Bij het verweven en overlappen van processen is er dezelfde problematiek: nl. de
 
 Dit is een voorbeeld van een race-conditie. Een race conditie onstaat wanneer verschillende processen of threads gegevens lezen en schrijven, waardoor het uiteindelijke resultaat afhankelijk is van de volgorde waarin de instructies in de verschillende processen worden uitgevoerd.
 
+
+\newpage
+
+
 \subsubsection{Aandachtspunten voor het besturingssysteem}
 
 \begin{itemize}
@@ -54,17 +55,51 @@ Dit is een voorbeeld van een race-conditie. Een race conditie onstaat wanneer ve
 
 \end{itemize}
 
+\begin{landscape}
+
 \subsubsection{Interactie van processen}
 
-\begin{itemize}
-\item 
-\item 
-\item 
-\item 
-\item 
-\item 
-\end{itemize}
+\begin{table}[htb]
+    \centering
+    \begin{center}
+    \def\arraystretch{1.5}%  1 is the default, change whatever you need
+    \begin{tabular}{ | p{5cm} | p{3cm} | p{7cm} | p{6cm} |}
+    \hline
+    Mate van \newline bewustzijn & Relatie & Invloed van proces op een ander proces & Mogelijke besturingsproblemen \\ \hline
+   Processen zijn zich niet bewust van elkaar & Concurrentie & 
+   \begin{itemize}
+       \item Resultaten van een proces zijn onafhankelijk van de actie van andere processen
+       \item Timing van proces kan beïnvloed zijn
+   \end{itemize}
+   & \begin{itemize}
+       \item Wederzijdse uitsluiting
+       \item Deadlock
+       \item Starvation
+   \end{itemize} \\ \hline
+   Processen zijn zich indirect bewust van elkaar & Samenwerking door delen & \begin{itemize}
+       \item Resultaten van een proces kunnen afhankelijk zijn van informatie van andere processen
+       \item Timing van proces kan beïnvloed zijn
+   \end{itemize} & \begin{itemize}
+       \item Wederzijdse uitsluiting
+       \item Deadlock
+       \item Starvation
+       \item Gegevenssamenhang (data coherence)
+   \end{itemize} \\ \hline
+   Processen zijn zich direct bewust van elkaar & Samenwerking door communicatie & \begin{itemize}
+       \item Resultaten van een proces kunnen afhankelijk zijn van informatie van andere processen
+       \item Timing van proces kan beïnvloed zijn
+   \end{itemize} & \begin{itemize}
+       \item Deadlock
+       \item Starvation
+   \end{itemize} \\ \hline
+    \end{tabular}
+\end{center}
 
+    \caption{Caption}
+    \label{tab:my_label}
+\end{table}
+
+\end{landscape}
 
 \subsubsubsection{Concurrentie tussen processen om bronnen}
 

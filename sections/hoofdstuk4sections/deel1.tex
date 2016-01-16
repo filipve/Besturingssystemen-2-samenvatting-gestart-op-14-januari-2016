@@ -2,11 +2,11 @@
 
 \subsection{Threads: Resource ownership and execution}
 
-Processen hebben twee kenmerken:
+\textbf{\textcolor{grayfilip}{Processen hebben twee kenmerken:}}
 
 \begin{itemize}
-    \item Resource ownership (Bezit van bronnen) : Aan een proces wordt een virtuele adresruimte toegewezen voor de opslag van het procesbeeld.
-    \item Scheduling / execution (Inroosteren en uitvoering): Een proces is een uitvoeringspad door een of meer programma’s en kan verweven worden met die van andere processen.
+    \item \definitie{\textbf{Resource ownership} (Bezit van bronnen)} : Aan een proces wordt een virtuele adresruimte toegewezen voor de opslag van het procesbeeld.
+    \item \definitie{\textbf{Scheduling / execution} (Inroosteren en uitvoering)}: Een proces is een uitvoeringspad door een of meer programma’s en kan verweven worden met die van andere processen.
 \end{itemize}
 	
 Deze twee kenmerken worden onafhankelijk behandeld door het besturingssysteem.
@@ -27,6 +27,8 @@ JRE (Java Run- Time Environment) is een voorbeeld van een process met meerdere t
 Windows, Solaris en moderne UNIX versies ondersteunen meerdere gebruikersprocessen en meerdere threads per proces.
 
 Een proces heeft dus een virtuele adresruimte, die het procesbeeld bevat en heeft beveiligde toegang tot processors, andere processen, bestanden en I/O-bronnen.
+
+\newpage
 
 \textbf{Binnen processen kunnen er dus meerdere threads zijn, elke thread heeft:}
 

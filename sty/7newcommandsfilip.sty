@@ -77,3 +77,13 @@
 
 %\newcommand{\sectionbreak}{\clearpage}
 %\newcommand{\subsectionbreak}{\clearpage}
+
+%dit zorgt ervoor dat alle links voor glossary in het groen verschijnen die kleingedrukt zijn.
+
+\newcommand*{\definitie}{\textcolor{red}}
+
+\renewcommand*{\gls}{\textcolor{green}}
+\renewcommand*{\Gls}{\textcolor{red}}
+%\renewcommand*{\gls}{\textcolor{green}}
+
+\renewcommand*{\glstextformat}[1]{\textcolor{green}{#1}}

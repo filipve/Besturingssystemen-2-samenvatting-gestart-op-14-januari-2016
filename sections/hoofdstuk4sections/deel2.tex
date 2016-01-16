@@ -1,3 +1,6 @@
+
+\newpage
+
 \subsection{Functionaliteit van threads}
 
 \noindent $\Rightarrow$ Net zoals processen hebben threads  verschillende uitvoeringstoestanden en kunnen ze met elkaar synchroniseren.
@@ -37,6 +40,8 @@ Stel dat we een programma hebben dat twee maal een externe procedureaanroep (rem
     \label{fig:RPC Using Single Thread}
 \end{figure}
 
+\newpage
+
 Volgende figuur zie je het geval hoe het zou zijn moest men 1 thread per server gebruiken.
 
 \begin{figure}[htp]
@@ -63,6 +68,8 @@ Bij een uniprocessor maakt multiprogramming het verweven van meerdere threads bi
         \item Het threadbeheer wordt gedaan door het programma.
         \item De kernel weet niet van het bestaan van de threads.
 \end{itemize}
+
+\newpage
 
 \textbf{De samenhang tussen ULT en de procestoestand (zie meer uitleg boek p 185)}
 
@@ -101,4 +108,17 @@ Er is een moduswisseling nodig naar kernel-mode om de besturing van de ene threa
 \end{itemize}
 
 \subsubsection{Andere indelingen}
+
+    \begin{center}
+    \def\arraystretch{1.5}%  1 is the default, change whatever you need
+
+    \begin{tabular}{ | p{4cm} | p{6cm} | p{5cm} |}
+    \hline
+    Threads : processen & Beschrijving & Voorbeeldsystemen \\ \hline
+    1:1 (één op één)     & Elke uitvoeringsthread is een uniek proces met een eigen adresruimte en eigen bronnen. & Dit was de oorspronkelijke implementatie van UNIX \\ \hline
+   M : 1 (veel op één)   & Een proces definieert een adresruimte en dynamische bezit van bronnen. Binnen het proces kunnen meerdere threads worden gecreëerd en uitgevoerd. & Windows NT, Solaris, Linux OS/2, OS/390, MACH \\ \hline
+1 : M (één op veel)      & Een thread kan migreren van de ene naar de andere procesomgeving. Hierdoor kan een thread eenvoudig worden verplaatst tussen verschillende systemen. & RA(Clouds), Emeralds \\ \hline
+   M : N (veel op veel)  & Combineert de eigenschappen van M : 1 en 1 : M & TRIX \\ \hline
+    \end{tabular}
+\end{center}
 
